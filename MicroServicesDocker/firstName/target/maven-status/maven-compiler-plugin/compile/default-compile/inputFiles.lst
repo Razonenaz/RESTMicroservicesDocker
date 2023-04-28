@@ -1,6 +1,0 @@
-/home/nazar/eclipse-workspace/DevSmile/MicroServicesDocker/firstName/src/main/java/com/microservice/firstName/FirstNameApplication.java
-/home/nazar/eclipse-workspace/DevSmile/MicroServicesDocker/firstName/src/main/java/com/microservice/firstName/controller/FirstNameController.java
-/home/nazar/eclipse-workspace/DevSmile/MicroServicesDocker/firstName/src/main/java/com/microservice/firstName/repository/DBContext.java
-/home/nazar/eclipse-workspace/DevSmile/MicroServicesDocker/firstName/src/main/java/com/microservice/firstName/repository/FirstNameRepository.java
-/home/nazar/eclipse-workspace/DevSmile/MicroServicesDocker/firstName/src/main/java/com/microservice/firstName/model/Student.java
-/home/nazar/eclipse-workspace/DevSmile/MicroServicesDocker/firstName/src/main/java/com/microservice/firstName/service/FirstNameService.java
