@@ -1,0 +1,6 @@
+/home/nazar/eclipse-workspace/DevSmile/MicroServicesDocker/lastName/src/main/java/com/microservice/lastName/repository/DBContext.java
+/home/nazar/eclipse-workspace/DevSmile/MicroServicesDocker/lastName/src/main/java/com/microservice/lastName/LastNameApplication.java
+/home/nazar/eclipse-workspace/DevSmile/MicroServicesDocker/lastName/src/main/java/com/microservice/lastName/controller/LastNameController.java
+/home/nazar/eclipse-workspace/DevSmile/MicroServicesDocker/lastName/src/main/java/com/microservice/lastName/repository/LastNameRepository.java
+/home/nazar/eclipse-workspace/DevSmile/MicroServicesDocker/lastName/src/main/java/com/microservice/lastName/service/LastNameService.java
+/home/nazar/eclipse-workspace/DevSmile/MicroServicesDocker/lastName/src/main/java/com/microservice/lastName/model/Student.java
