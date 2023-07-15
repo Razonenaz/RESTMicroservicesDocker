@@ -1,0 +1,6 @@
+/home/nazar/Practice/Devgen/RestMicroservices-allInOne/MicroServicesDocker/lastName/src/main/java/com/microservice/lastName/repository/DBContext.java
+/home/nazar/Practice/Devgen/RestMicroservices-allInOne/MicroServicesDocker/lastName/src/main/java/com/microservice/lastName/service/LastNameService.java
+/home/nazar/Practice/Devgen/RestMicroservices-allInOne/MicroServicesDocker/lastName/src/main/java/com/microservice/lastName/LastNameApplication.java
+/home/nazar/Practice/Devgen/RestMicroservices-allInOne/MicroServicesDocker/lastName/src/main/java/com/microservice/lastName/repository/LastNameRepository.java
+/home/nazar/Practice/Devgen/RestMicroservices-allInOne/MicroServicesDocker/lastName/src/main/java/com/microservice/lastName/model/Student.java
+/home/nazar/Practice/Devgen/RestMicroservices-allInOne/MicroServicesDocker/lastName/src/main/java/com/microservice/lastName/controller/LastNameController.java
