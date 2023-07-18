@@ -15,15 +15,14 @@ public class LastNameService {
     @Autowired
     private LastNameRepository repository;
 
-    public ArrayList<String> getAllLastName() {
+    public ArrayList<Student> getAllLastName() {
         List<Student> allStudents = repository.getAllLastName();
-        ArrayList<String> allLastNames = new ArrayList<String>();
+        ArrayList<Student> allLastNames = new ArrayList<Student>();
         for (Student student : allStudents) {
-            allLastNames.add(student.getLastName());
+            allLastNames.add(student);
         }
 
         return allLastNames;
-
     }
 
     public Student getLastNameById(String id) {
@@ -36,13 +35,11 @@ public class LastNameService {
         return repository.addLastName(student.getLastName());
     }
 
-    public String updateLastName(String id, Student student) {
-
-        return repository.updateLastName(id, student.getLastName());
+    public void updateLastName(String id, Student student) {
+    	repository.updateLastName(id, student.getLastName());
     }
 
-    public String deleteLastNameById(String id) {
-
-        return repository.deleteLastNameById(id);
+    public void deleteLastNameById(String id) {
+    	repository.deleteLastNameById(id);
     }
 }

@@ -17,37 +17,35 @@ import com.microservice.lastName.service.LastNameService;
 @RestController
 public class LastNameController {
 
-    @Autowired
-    private LastNameService service;
+	@Autowired
+	private LastNameService service;
 
-    @GetMapping(value = "/student/get")
-    public ArrayList<String> getAllLastName() {
+	@GetMapping("/student/get")
+	public ArrayList<Student> getAllLastName() {
 
-        return service.getAllLastName();
-    }
+		return service.getAllLastName();
+	}
 
-    @GetMapping(value = "/student/get/{id}")
-    public Student getLastNameById(@PathVariable("id") String id) {
+	@GetMapping("/student/get/{id}")
+	public Student getLastNameById(@PathVariable("id") String id) {
 
-        return service.getLastNameById(id);
-    }
+		return service.getLastNameById(id);
+	}
 
-    @PostMapping("/student/add")
-    public String addLastName(@RequestBody Student student) {
+	@PostMapping("/student/add")
+	public String addLastName(@RequestBody Student student) {
 
-        return service.addLastName(student);
-    }
+		return service.addLastName(student);
+	}
 
-    @PutMapping(value = "/student/update/{id}")
-    public String updateLastName(@PathVariable("id") String id, @RequestBody Student student) {
+	@PutMapping("/student/update/{id}")
+	public void updateLastName(@PathVariable("id") String id, @RequestBody Student student) {
+		service.updateLastName(id, student);
+	}
 
-        return service.updateLastName(id, student);
-    }
-
-    @DeleteMapping(value = "/student/delete/{id}")
-    public String deleteLastName(@PathVariable("id") String id) {
-
-        return service.deleteLastNameById(id);
-    }
+	@DeleteMapping("/student/delete/{id}")
+	public void deleteLastName(@PathVariable("id") String id) {
+		service.deleteLastNameById(id);
+	}
 
 }

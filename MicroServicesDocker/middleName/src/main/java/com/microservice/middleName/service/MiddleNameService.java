@@ -6,44 +6,56 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microservice.middleName.model.Student;
 import com.microservice.middleName.repository.MiddleNameRepository;
 
 @Service
 public class MiddleNameService {
 
-    @Autowired
-    private MiddleNameRepository repository;
+	@Autowired
+	private MiddleNameRepository repository;
 
-    public ArrayList<String> getAllMiddleAndLastName(ArrayList<String> allLastName) {
-        List<Student> allMiddleName = repository.getAllMiddleName();
-        ArrayList<String> allMiddleAndLastName = new ArrayList<String>();
-        int i = 0;
-        for (Student student : allMiddleName) {
-            allMiddleAndLastName.add(student.getMiddleName() + " " + allLastName.get(i));
-            i++;
-        }
- 
-        return allMiddleAndLastName;
-    }
+	@Autowired
+	private WebClientService webClient;
 
-    public Student getMiddleNameById(String id) {
+	public ArrayList<Student> getAllMiddleAndLastName() {
+		ObjectMapper mapper = new ObjectMapper();
+		ArrayList<Student> allNames = mapper.convertValue(webClient.getAllMiddleAndLastName(),
+				new TypeReference<ArrayList<Student>>() {
+				});
+		List<Student> allMiddleName = repository.getAllMiddleName();
+		int i = 0;
+		for (Student student : allMiddleName) {
+			allNames.get(i).setMiddleName(student.getMiddleName());
+			i++;
+		}
 
-        return repository.getMiddleNameById(id);
-    }
+		return allNames;
+	}
 
-    public String addMiddleName(String id, Student student) {
+	public Student getMiddleNameById(String id) {
+		Student student = webClient.getMiddleNameById(id);
+		student.setMiddleName(repository.getMiddleNameById(id).getMiddleName());
 
-        return repository.addMiddleName(id, student.getMiddleName());
-    }
+		return student;
+	}
 
-    public String updateMiddleName(String id, Student student) {
+	public String addMiddleName(Student student) {
+		String id = webClient.addMiddleName(student);
+		repository.addMiddleName(id, student.getMiddleName());
 
-        return repository.updateMiddleName(id, student.getMiddleName());
-    }
+		return id;
+	}
 
-    public String deleteMiddleNameById(String id) {
+	public void updateMiddleName(String id, Student student) {
+		webClient.updateMiddleName(id, student);
+		repository.updateMiddleName(id, student.getMiddleName());
+	}
 
-        return repository.deleteMiddleName(id);
-    }
+	public void deleteMiddleNameById(String id) {
+		webClient.deleteMiddleName(id);
+		repository.deleteMiddleName(id);
+	}
 }
