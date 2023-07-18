@@ -33,20 +33,20 @@ public class FirstNameController {
 	}
 
 	@PostMapping("/student/add")
-	public String addFirstName(@RequestBody Student student) {
-		service.addFirstName(student);
+	public Student addFirstName(@RequestBody Student student) {
 
-		return "Student added: " + student;
+		return service.addFirstName(student);
 	}
 
 	@PutMapping("/student/update/{id}")
-	public String updateById(@RequestBody Student student, @PathVariable("id") String id) {
+	public Student updateById(@RequestBody Student student, @PathVariable("id") String id) {
 		service.updateFirstName(id, student);
-		return "Student updated: " + student;
+		
+		return service.updateFirstName(id, student);
 	}
 
 	@DeleteMapping("/student/delete/{id}")
-	public void deleteFirstName(@PathVariable("id") String id) {
-		service.deleteFirstNameById(id);
+	public String deleteFirstName(@PathVariable("id") String id) {
+		return service.deleteFirstNameById(id);
 	}
 }

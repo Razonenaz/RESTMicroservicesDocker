@@ -14,14 +14,14 @@ import reactor.core.publisher.Mono;
 @Service
 public class WebClientService {
 
-	public ArrayList<Student> getAll() {
+	public ArrayList<Student> getAllMiddleAndLastName() {
 		ArrayList<Student> allMiddleAndLastName = WebClient.create("http://mname:8082").get().uri("/student/get")
 				.retrieve().bodyToMono(ArrayList.class).block();
 
 		return allMiddleAndLastName;
 	}
 
-	public Student getById(String id) {
+	public Student getMiddleAndLastNameById(String id) {
 		Student student = WebClient.create("http://mname:8082").get()
 				.uri(uriBuilder -> uriBuilder.path("/student/get/{id}").build(id)).retrieve().bodyToMono(Student.class)
 				.block();
@@ -29,7 +29,7 @@ public class WebClientService {
 		return student;
 	}
 
-	public String addFirstName(Student student) {
+	public String addMiddleAndLastName(Student student) {
 		String id = WebClient.create("http://mname:8082").post().uri("/student/add")
 				.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 				.body(Mono.just(student), Student.class).retrieve().bodyToMono(String.class).block();
@@ -37,13 +37,13 @@ public class WebClientService {
 		return id;
 	}
 
-	public void updateById(Student student, String id) {
+	public void updateMiddleAndLastName(Student student, String id) {
 		WebClient.create("http://mname:8082").put().uri("/student/update/" + id)
 				.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 				.body(Mono.just(student), Student.class).retrieve().bodyToMono(String.class).block();
 	}
 
-	public void deleteFirstName(String id) {
+	public void deleteMiddleAndLastName(String id) {
 		WebClient.create("http://mname:8082").delete().uri("/student/delete/" + id)
 				.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE).retrieve().bodyToMono(String.class)
 				.block();

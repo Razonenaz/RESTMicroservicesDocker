@@ -22,40 +22,40 @@ public class MiddleNameService {
 
 	public ArrayList<Student> getAllMiddleAndLastName() {
 		ObjectMapper mapper = new ObjectMapper();
-		ArrayList<Student> allNames = mapper.convertValue(webClient.getAllMiddleAndLastName(),
+		ArrayList<Student> allNames = mapper.convertValue(webClient.getAllLastName(),
 				new TypeReference<ArrayList<Student>>() {
 				});
 		List<Student> allMiddleName = repository.getAllMiddleName();
-		int i = 0;
-		for (Student student : allMiddleName) {
-			allNames.get(i).setMiddleName(student.getMiddleName());
+		allNames.forEach(names -> {
+			int i = 0;
+			names.setMiddleName(allMiddleName.get(i).getMiddleName());
 			i++;
-		}
+		});
 
 		return allNames;
 	}
 
 	public Student getMiddleNameById(String id) {
-		Student student = webClient.getMiddleNameById(id);
+		Student student = webClient.getLastNameById(id);
 		student.setMiddleName(repository.getMiddleNameById(id).getMiddleName());
 
 		return student;
 	}
 
 	public String addMiddleName(Student student) {
-		String id = webClient.addMiddleName(student);
+		String id = webClient.addLastName(student);
 		repository.addMiddleName(id, student.getMiddleName());
 
 		return id;
 	}
 
 	public void updateMiddleName(String id, Student student) {
-		webClient.updateMiddleName(id, student);
+		webClient.updateLastName(id, student);
 		repository.updateMiddleName(id, student.getMiddleName());
 	}
 
 	public void deleteMiddleNameById(String id) {
-		webClient.deleteMiddleName(id);
+		webClient.deleteLastName(id);
 		repository.deleteMiddleName(id);
 	}
 }

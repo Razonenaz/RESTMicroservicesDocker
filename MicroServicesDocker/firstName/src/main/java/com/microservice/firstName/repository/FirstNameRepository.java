@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import com.microservice.firstName.model.Student;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.result.UpdateResult;
 
 @Configuration
 @PropertySource("classpath:application.properties")
@@ -39,24 +40,24 @@ public class FirstNameRepository {
 	public Student getFirstNameById(String id) {
 		Query query = new Query(Criteria.where("_id").is(id));
 		query.fields().include("firstName");
-
+		
 		return mongoTemplate.findOne(query, Student.class);
 	}
 
-	public String addFirstName(String id, String firstName) {
+	public Student addFirstName(String id, String firstName) {
 		Query query = new Query(Criteria.where("_id").is(id));
 		Update update = new Update().set("firstName", firstName);
-		mongoTemplate.updateFirst(query, update, Student.class);
-
-		return "First name added";
+		mongoTemplate.updateFirst(query, update, Student.class).getClass(Student.class);
+		
+		return mongoTemplate.findOne(query, Student.class);
 	}
 
-	public String updateFirstName(String id, String firstName) {
+	public Student updateFirstName(String id, String firstName) {
 		Query query = new Query(Criteria.where("_id").is(id));
 		Update update = new Update().set("firstName", firstName);
-		mongoTemplate.updateFirst(query, update, Student.class);
-
-		return "First name updated";
+		mongoTemplate.findAndModify(query, update, Student.class);
+		
+		return mongoTemplate.findOne(query, Student.class);
 	}
 
 	public String deleteFirstName(String id) {

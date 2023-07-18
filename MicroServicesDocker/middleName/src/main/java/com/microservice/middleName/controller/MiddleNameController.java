@@ -34,9 +34,8 @@ public class MiddleNameController {
 
 	@PostMapping("/student/add")
 	public String addMiddleName(@RequestBody Student student) {
-		String id = service.addMiddleName(student);
-
-		return id;
+		
+		return service.addMiddleName(student);
 	}
 
 	@PutMapping("/student/update/{id}")

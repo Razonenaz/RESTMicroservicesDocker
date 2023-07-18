@@ -22,40 +22,43 @@ public class FirstNameService {
 
 	public ArrayList<Student> getAll() {
 		ObjectMapper mapper = new ObjectMapper();
-		ArrayList<Student> allNames = mapper.convertValue(webClient.getAll(), new TypeReference<ArrayList<Student>>() {
-		});
+		ArrayList<Student> allNames = mapper.convertValue(webClient.getAllMiddleAndLastName(),
+				new TypeReference<ArrayList<Student>>() {
+				});
 		List<Student> allFirstName = repository.getAllFirstName();
-		int i = 0;
-		for (Student student : allFirstName) {
-			allNames.get(i).setFirstName(student.getFirstName());
+		allNames.forEach(names -> {
+			int i = 0;
+			names.setFirstName(allFirstName.get(i).getFirstName());
 			i++;
-		}
+		});
 
 		return allNames;
 	}
 
 	public Student getFirstNameById(String id) {
-		Student student = webClient.getById(id);
+		Student student = webClient.getMiddleAndLastNameById(id);
 		student.setFirstName(repository.getFirstNameById(id).getFirstName());
 		student.setId(id);
 
 		return student;
 	}
 
-	public String addFirstName(Student student) {
-		String id = webClient.addFirstName(student);
+	public Student addFirstName(Student student) {
+		String id = webClient.addMiddleAndLastName(student);
 
 		return repository.addFirstName(id, student.getFirstName());
 	}
 
-	public String updateFirstName(String id, Student student) {
-		webClient.updateById(student, id);
+	public Student updateFirstName(String id, Student student) {
+		webClient.updateMiddleAndLastName(student, id);
 
 		return repository.updateFirstName(id, student.getFirstName());
 	}
 
-	public void deleteFirstNameById(String id) {
-		webClient.deleteFirstName(id);
+	public String deleteFirstNameById(String id) {
+		webClient.deleteMiddleAndLastName(id);
 		repository.deleteFirstName(id);
+		
+		return "Deleted!";
 	}
 }
