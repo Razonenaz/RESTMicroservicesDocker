@@ -27,9 +27,7 @@ public class FirstNameService {
 				});
 		List<Student> allFirstName = repository.getAllFirstName();
 		allNames.forEach(names -> {
-			int i = 0;
-			names.setFirstName(allFirstName.get(i).getFirstName());
-			i++;
+			names.setFirstName(allFirstName.get(allNames.indexOf(names)).getFirstName());
 		});
 
 		return allNames;
@@ -58,7 +56,7 @@ public class FirstNameService {
 	public String deleteFirstNameById(String id) {
 		webClient.deleteMiddleAndLastName(id);
 		repository.deleteFirstName(id);
-		
+
 		return "Deleted!";
 	}
 }

@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microservice.middleName.model.Student;
 import com.microservice.middleName.repository.MiddleNameRepository;
 
@@ -21,15 +19,11 @@ public class MiddleNameService {
 	private WebClientService webClient;
 
 	public ArrayList<Student> getAllMiddleAndLastName() {
-		ObjectMapper mapper = new ObjectMapper();
-		ArrayList<Student> allNames = mapper.convertValue(webClient.getAllLastName(),
-				new TypeReference<ArrayList<Student>>() {
-				});
+		ArrayList<Student> allNames = webClient.getAllLastName();
 		List<Student> allMiddleName = repository.getAllMiddleName();
 		allNames.forEach(names -> {
-			int i = 0;
-			names.setMiddleName(allMiddleName.get(i).getMiddleName());
-			i++;
+
+			names.setMiddleName(allMiddleName.get(allNames.indexOf(names)).getMiddleName());
 		});
 
 		return allNames;
